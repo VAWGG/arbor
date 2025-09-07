@@ -65,17 +65,19 @@
         }
 
         /* ===== BRAND SUBTITLE - EDIT HERE ===== */
-        /* To add text below ARBOR (like "CA:"), uncomment and modify this: */
-        /*
         .brand::after {
-            content: "CA:";
+            content: "CA: M2PRHif3Vhmn6fDTjF5qoUt7BDnPVKrMqGTdykRdaos";
             display: block;
             font-size: 12px;
             font-weight: 400;
             color: var(--bark-brown);
             margin-top: 2px;
+            font-family: 'Inter', monospace;
+            letter-spacing: 0.5px;
         }
-        */
+        
+        /* To change the CA address, edit the content above */
+        /* Format: "CA: [YOUR_ADDRESS_HERE]" */
 
         /* Hero Section */
         .hero {
@@ -155,10 +157,35 @@
             color: var(--forest-green);
         }
 
+        /* About Us Section */
+        .about-section {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--bark-brown);
+            margin-bottom: 25px;
+        }
+
+        .about-content p:last-child {
+            margin-bottom: 0;
+            font-weight: 500;
+            color: var(--forest-green);
+        }
+
         /* Gallery Section */
         .gallery-section {
             padding: 80px 0;
-            background: var(--white);
+            background: var(--cream);
         }
 
         .section-title {
@@ -211,7 +238,7 @@
         /* Map Section */
         .map-section {
             padding: 80px 0;
-            background: var(--cream);
+            background: var(--white);
             text-align: center;
         }
 
@@ -238,7 +265,7 @@
         /* Before/After Section */
         .before-after-section {
             padding: 80px 0;
-            background: var(--white);
+            background: var(--cream);
         }
 
         .before-after-container {
@@ -493,6 +520,20 @@
                 <a href="{{SUPPORT_URL}}" class="cta-button">Support</a>
                 <!-- Replace {{GALLERY_URL}} with your actual gallery link -->
                 <!-- Replace {{SUPPORT_URL}} with your actual support/donation link -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section class="about-section">
+        <div class="container">
+            <h2 class="section-title">About Us</h2>
+            <div class="about-content">
+                <p>Our website is dedicated to preserving the world's ancient trees, vital guardians of our planet's ecosystems. We provide real-time updates and an interactive global map pinpointing the locations of these majestic trees, from towering sequoias to sacred baobabs.</p>
+                
+                <p>Our mission is to protect these natural wonders by sharing their ecological and cultural significance, highlighting threats like deforestation and climate change, and promoting conservation efforts. Through engaging stories, scientific insights, and community-driven initiatives, we inspire action to safeguard ancient trees for future generations.</p>
+                
+                <p>Join us to explore, locate, and protect these living legends of our world.</p>
             </div>
         </div>
     </section>
