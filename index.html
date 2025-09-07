@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ancient Trees, Living Archives</title>
+    
+    <!-- ===== QUICK EDIT GUIDE ===== -->
+    <!-- 1. BRAND NAME: Search for "PROJECT BRAND NAME" to change ARBOR -->
+    <!-- 2. BRAND SUBTITLE: Search for "BRAND SUBTITLE" to add text below ARBOR -->
+    <!-- 3. MAIN LINKS: Search for "MAIN CTA LINKS" to edit gallery/support links -->
+    <!-- 4. SOCIAL LINKS: Search for "SOCIAL MEDIA LINKS" to edit X/Instagram/YouTube/Email -->
+    <!-- ================================ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --forest-green: #0B4F2A;
+            --bark-brown: #6B4E3D;
+            --cream: #F7F3E8;
+            --white: #FFFFFF;
+            --shadow: rgba(11, 79, 42, 0.1);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--forest-green);
+            background-color: var(--cream);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(247, 243, 232, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 0;
+        }
+
+        .brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--forest-green);
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        /* ===== BRAND SUBTITLE - EDIT HERE ===== */
+        /* To add text below ARBOR (like "CA:"), uncomment and modify this: */
+        /*
+        .brand::after {
+            content: "CA:";
+            display: block;
+            font-size: 12px;
+            font-weight: 400;
+            color: var(--bark-brown);
+            margin-top: 2px;
+        }
+        */
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            margin-top: 70px;
+        }
+
+        .hero-slider {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+        }
+
+        .hero-content {
+            position: absolute;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            color: var(--white);
+            z-index: 10;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero .subline {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            padding: 15px 30px;
+            border: 2px solid var(--white);
+            background: transparent;
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .cta-button:hover {
+            background: var(--white);
+            color: var(--forest-green);
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 60px;
+            color: var(--forest-green);
+        }
+
+        .masonry-gallery {
+            columns: 4;
+            column-gap: 20px;
+            padding: 0 20px;
+        }
+
+        .gallery-item {
+            break-inside: avoid;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px var(--shadow);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-caption {
+            padding: 15px;
+            background: var(--white);
+            font-size: 0.9rem;
+            color: var(--bark-brown);
+            text-align: center;
+        }
+
+        /* Map Section */
+        .map-section {
+            padding: 80px 0;
+            background: var(--cream);
+            text-align: center;
+        }
+
+        .map-container {
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px var(--shadow);
+        }
+
+        .map-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        .map-text {
+            margin-top: 20px;
+            font-size: 1.1rem;
+            color: var(--bark-brown);
+        }
+
+        /* Before/After Section */
+        .before-after-section {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .before-after-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px var(--shadow);
+        }
+
+        .before-after-slider {
+            position: relative;
+            height: 400px;
+        }
+
+        .before-after-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slider-handle {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 4px;
+            height: 100%;
+            background: var(--white);
+            cursor: ew-resize;
+            z-index: 10;
+        }
+
+        .slider-handle::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            background: var(--white);
+            border-radius: 50%;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .before-after-text {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.1rem;
+            color: var(--bark-brown);
+        }
+
+        /* Micro Cards Section */
+        .micro-cards-section {
+            padding: 80px 0;
+            background: var(--cream);
+        }
+
+        .micro-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .micro-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px var(--shadow);
+            text-align: center;
+        }
+
+        .micro-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--forest-green);
+        }
+
+        .micro-card p {
+            color: var(--bark-brown);
+            line-height: 1.6;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            padding: 80px 0;
+            background: var(--white);
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .stat-item {
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--forest-green);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: var(--bark-brown);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--forest-green);
+            color: var(--white);
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: var(--cream);
+        }
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+
+        .lightbox img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 8px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .masonry-gallery {
+                columns: 2;
+            }
+
+            .hero-ctas {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .micro-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .masonry-gallery {
+                columns: 1;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <!-- ===== PROJECT BRAND NAME - EDIT HERE ===== -->
+            <a href="#" class="brand">ARBOR</a>
+            <!-- To add text below ARBOR (like "CA:"), edit the brand class in CSS -->
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-slider">
+            <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1920&h=1080&fit=crop&crop=center');"></div>
+            <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&h=1080&fit=crop&crop=center');"></div>
+            <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1448375240586-882707db888b?w=1920&h=1080&fit=crop&crop=center');"></div>
+            <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=1920&h=1080&fit=crop&crop=center');"></div>
+            <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1920&h=1080&fit=crop&crop=center');"></div>
+        </div>
+        <div class="hero-content">
+            <h1>Ancient Trees, Living Archives</h1>
+            <p class="subline">Photos. GPS. Age. Open data.</p>
+            <div class="hero-ctas">
+                <!-- ===== MAIN CTA LINKS - EDIT HERE ===== -->
+                <a href="{{GALLERY_URL}}" class="cta-button">Explore Gallery</a>
+                <a href="{{SUPPORT_URL}}" class="cta-button">Support</a>
+                <!-- Replace {{GALLERY_URL}} with your actual gallery link -->
+                <!-- Replace {{SUPPORT_URL}} with your actual support/donation link -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section">
+        <div class="container">
+            <h2 class="section-title">Documented Trees</h2>
+            <div class="masonry-gallery" id="gallery">
+                <!-- Gallery items will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="container">
+            <div class="map-container">
+                <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&h=400&fit=crop&crop=center&auto=format&q=80" alt="Map showing documented tree locations" class="map-image" onerror="this.src='https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=400&fit=crop&crop=center&auto=format&q=80'">
+            </div>
+            <p class="map-text">Sites we've documented so far.</p>
+        </div>
+    </section>
+
+    <!-- Before/After Section -->
+    <section class="before-after-section">
+        <div class="container">
+            <div class="before-after-container">
+                <div class="before-after-slider" id="beforeAfterSlider">
+                    <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=400&fit=crop&crop=center" alt="Threatened ancient tree" class="before-after-image" id="beforeImage">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=400&fit=crop&crop=center" alt="Restored ancient tree" class="before-after-image" id="afterImage">
+                    <div class="slider-handle" id="sliderHandle"></div>
+                </div>
+            </div>
+            <p class="before-after-text">Threats vs. restoration.</p>
+        </div>
+    </section>
+
+    <!-- Micro Cards Section -->
+    <section class="micro-cards-section">
+        <div class="container">
+            <div class="micro-cards">
+                <div class="micro-card">
+                    <h3>Why it matters</h3>
+                    <p>Old trees anchor memory, soil, and water.</p>
+                </div>
+                <div class="micro-card">
+                    <h3>How we work</h3>
+                    <p>Field photos, GPS, age estimate, open access.</p>
+                </div>
+                <div class="micro-card">
+                    <h3>Join in</h3>
+                    <p>Report a tree, volunteer, or share the gallery.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" data-target="1247">0</div>
+                    <div class="stat-label">Trees documented</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="89">0</div>
+                    <div class="stat-label">Communities</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="15">0</div>
+                    <div class="stat-label">Years protected</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <!-- ===== SOCIAL MEDIA LINKS - EDIT HERE ===== -->
+                <a href="{{X}}" class="footer-link">X/Twitter</a>
+                <a href="{{INSTAGRAM}}" class="footer-link">Instagram</a>
+                <a href="{{YOUTUBE}}" class="footer-link">YouTube</a>
+                <a href="mailto:{{EMAIL}}" class="footer-link">Email</a>
+                <!-- Replace {{X}} with your X/Twitter profile URL -->
+                <!-- Replace {{INSTAGRAM}} with your Instagram profile URL -->
+                <!-- Replace {{YOUTUBE}} with your YouTube channel URL -->
+                <!-- Replace {{EMAIL}} with your contact email address -->
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="lightboxClose">&times;</button>
+            <img id="lightboxImage" src="" alt="">
+        </div>
+    </div>
+
+    <script>
+        // Hero slider
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.hero-slide');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[index].classList.add('active');
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            showSlide(currentSlide);
+        }
+
+        setInterval(nextSlide, 5000);
+
+        // Gallery data with reliable image sources
+        const galleryImages = [
+            { src: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=600&fit=crop&crop=center&auto=format&q=80', species: 'Redwood', age: '2,200 years', location: 'California' },
+            { src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=500&fit=crop&crop=center&auto=format&q=80', species: 'Oak', age: '800 years', location: 'England' },
+            { src: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=400&h=700&fit=crop&crop=center&auto=format&q=80', species: 'Cedar', age: '1,500 years', location: 'Lebanon' },
+            { src: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=450&fit=crop&crop=center&auto=format&q=80', species: 'Bristlecone', age: '4,800 years', location: 'Nevada' },
+            { src: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=550&fit=crop&crop=center&auto=format&q=80', species: 'Baobab', age: '1,200 years', location: 'Madagascar' },
+            { src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=650&fit=crop&crop=center&auto=format&q=80', species: 'Yew', age: '3,000 years', location: 'Wales' },
+            { src: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=400&h=500&fit=crop&crop=center&auto=format&q=80', species: 'Olive', age: '2,000 years', location: 'Greece' },
+            { src: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=600&fit=crop&crop=center&auto=format&q=80', species: 'Ginkgo', age: '1,400 years', location: 'China' },
+            { src: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=700&fit=crop&crop=center&auto=format&q=80', species: 'Sequoia', age: '3,200 years', location: 'California' },
+            { src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=450&fit=crop&crop=center&auto=format&q=80', species: 'Pine', age: '1,000 years', location: 'Sweden' },
+            { src: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=400&h=550&fit=crop&crop=center&auto=format&q=80', species: 'Maple', age: '600 years', location: 'Japan' },
+            { src: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=650&fit=crop&crop=center&auto=format&q=80', species: 'Cypress', age: '1,800 years', location: 'Turkey' },
+            { src: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=500&fit=crop&crop=center&auto=format&q=80', species: 'Eucalyptus', age: '900 years', location: 'Australia' },
+            { src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=600&fit=crop&crop=center&auto=format&q=80', species: 'Spruce', age: '1,100 years', location: 'Norway' },
+            { src: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=400&h=700&fit=crop&crop=center&auto=format&q=80', species: 'Fir', age: '1,300 years', location: 'Canada' },
+            { src: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=450&fit=crop&crop=center&auto=format&q=80', species: 'Hemlock', age: '800 years', location: 'Oregon' },
+            { src: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=550&fit=crop&crop=center&auto=format&q=80', species: 'Larch', age: '1,600 years', location: 'Siberia' },
+            { src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=650&fit=crop&crop=center&auto=format&q=80', species: 'Ash', age: '700 years', location: 'Ireland' },
+            { src: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=400&h=500&fit=crop&crop=center&auto=format&q=80', species: 'Beech', age: '1,200 years', location: 'Germany' },
+            { src: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=600&fit=crop&crop=center&auto=format&q=80', species: 'Birch', age: '500 years', location: 'Finland' },
+            { src: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=700&fit=crop&crop=center&auto=format&q=80', species: 'Cherry', age: '400 years', location: 'Japan' },
+            { src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=450&fit=crop&crop=center&auto=format&q=80', species: 'Elm', age: '600 years', location: 'France' },
+            { src: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=400&h=550&fit=crop&crop=center&auto=format&q=80', species: 'Hickory', age: '800 years', location: 'Tennessee' },
+            { src: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=650&fit=crop&crop=center&auto=format&q=80', species: 'Magnolia', age: '300 years', location: 'Louisiana' },
+            { src: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=500&fit=crop&crop=center&auto=format&q=80', species: 'Poplar', age: '200 years', location: 'Italy' },
+            { src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=600&fit=crop&crop=center&auto=format&q=80', species: 'Sycamore', age: '900 years', location: 'Scotland' },
+            { src: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=400&h=700&fit=crop&crop=center&auto=format&q=80', species: 'Walnut', age: '1,000 years', location: 'California' },
+            { src: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=450&fit=crop&crop=center&auto=format&q=80', species: 'Willow', age: '150 years', location: 'England' },
+            { src: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=550&fit=crop&crop=center&auto=format&q=80', species: 'Chestnut', age: '1,100 years', location: 'Spain' },
+            { src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=650&fit=crop&crop=center&auto=format&q=80', species: 'Dogwood', age: '250 years', location: 'Virginia' },
+            { src: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=400&h=500&fit=crop&crop=center&auto=format&q=80', species: 'Hawthorn', age: '400 years', location: 'Ireland' },
+            { src: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=600&fit=crop&crop=center&auto=format&q=80', species: 'Juniper', age: '1,500 years', location: 'Utah' },
+            { src: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=700&fit=crop&crop=center&auto=format&q=80', species: 'Linden', age: '800 years', location: 'Poland' },
+            { src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=450&fit=crop&crop=center&auto=format&q=80', species: 'Mountain Ash', age: '300 years', location: 'Alaska' },
+            { src: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=400&h=550&fit=crop&crop=center&auto=format&q=80', species: 'Pecan', age: '500 years', location: 'Texas' },
+            { src: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=650&fit=crop&crop=center&auto=format&q=80', species: 'Redbud', age: '200 years', location: 'Oklahoma' },
+            { src: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=500&fit=crop&crop=center&auto=format&q=80', species: 'Sassafras', age: '350 years', location: 'Kentucky' },
+            { src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=600&fit=crop&crop=center&auto=format&q=80', species: 'Tulip Tree', age: '600 years', location: 'Indiana' }
+        ];
+
+        // Populate gallery
+        function populateGallery() {
+            const gallery = document.getElementById('gallery');
+            galleryImages.forEach((image, index) => {
+                const item = document.createElement('div');
+                item.className = 'gallery-item';
+                item.innerHTML = `
+                    <img src="${image.src}" alt="${image.species} tree" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=500&fit=crop&crop=center&auto=format&q=80'">
+                    <div class="gallery-caption">${image.species} • ${image.age} • ${image.location}</div>
+                `;
+                item.addEventListener('click', () => openLightbox(image.src, image.species));
+                gallery.appendChild(item);
+            });
+        }
+
+        // Lightbox functionality
+        function openLightbox(src, alt) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImage = document.getElementById('lightboxImage');
+            lightboxImage.src = src;
+            lightboxImage.alt = alt;
+            lightbox.classList.add('active');
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+        }
+
+        // Before/After slider
+        function initBeforeAfterSlider() {
+            const slider = document.getElementById('beforeAfterSlider');
+            const handle = document.getElementById('sliderHandle');
+            const beforeImage = document.getElementById('beforeImage');
+            let isDragging = false;
+
+            function updateSlider(x) {
+                const rect = slider.getBoundingClientRect();
+                const percentage = Math.max(0, Math.min(100, ((x - rect.left) / rect.width) * 100));
+                handle.style.left = percentage + '%';
+                beforeImage.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
+            }
+
+            handle.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                e.preventDefault();
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (isDragging) {
+                    updateSlider(e.clientX);
+                }
+            });
+
+            document.addEventListener('mouseup', () => {
+                isDragging = false;
+            });
+
+            slider.addEventListener('click', (e) => {
+                updateSlider(e.clientX);
+            });
+        }
+
+        // Stats counter animation
+        function animateStats() {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            
+            statNumbers.forEach(stat => {
+                const target = parseInt(stat.getAttribute('data-target'));
+                const duration = 2000;
+                const increment = target / (duration / 16);
+                let current = 0;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    stat.textContent = Math.floor(current).toLocaleString();
+                }, 16);
+            });
+        }
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    if (entry.target.classList.contains('stats-section')) {
+                        animateStats();
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', () => {
+            populateGallery();
+            initBeforeAfterSlider();
+            
+            // Set up observers
+            const statsSection = document.querySelector('.stats-section');
+            observer.observe(statsSection);
+            
+            // Set up lightbox close
+            document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+            document.getElementById('lightbox').addEventListener('click', (e) => {
+                if (e.target.id === 'lightbox') {
+                    closeLightbox();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
